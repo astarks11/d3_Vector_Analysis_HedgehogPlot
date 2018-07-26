@@ -1,0 +1,164 @@
+
+
+//////////////////////////////////////////////////////////////////////////////
+// PART 4
+
+var randomGlyph = d3.select("#plot1-random")
+        .callReturn(createSvg)
+        .callReturn(createGroups(data));
+
+randomGlyph.append("g")
+    .attr("transform", function(d) {
+        // WRITE THIS PART
+    })....append("path")...; // WRITE THIS PART
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var unifGlyph = d3.select("#plot1-uniform")
+        .callReturn(createSvg)
+        .callReturn(createGroups(data));
+
+unifGlyph.append("g")
+    .attr("transform", function(d) {
+        return "translate(" + 0+ "," + 0 + ")"+" rotate("+getDegrees(d)+")";
+        // WRITE THIS PART
+    }).append("path")
+    .attr("d", function(d) { return "M "+(xOrig*d.vx)*-1+",0"+" L "+xOrig*d.vx+",0"+"";})
+    .attr("stroke","black").attr("fill","none"); // WRITE THIS PART
+
+    //    .attr("d", function(d) { return "M "+(xOrig*d.vx)*-1+","+(yOrig*d.vy)*-1+" L "+xOrig*d.vx+","+yOrig*d.vy+"";})
+
+
+function getDegrees(d) {
+    return 0;
+    var radians = Math.atan2(d.vx,d.vy);
+    return (2*Math.PI + radians) * 360 / (2*Math.PI);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+// PART 3
+
+var unifGlyph = d3.select("#plot1-uniform")
+        .callReturn(createSvg)
+        .callReturn(createGroups(data));
+
+unifGlyph.append("g")
+    .attr("transform", function(d) {
+        return "translate(" + 0+ "," + 0 + ")"+" rotate("+getDegrees(d)+")";
+        // WRITE THIS PART
+    }).append("path")
+    .attr("d", function(d) { return getLine(d);})
+    .attr("stroke","black").attr("fill","none"); // WRITE THIS PART
+
+    //    .attr("d", function(d) { return "M "+(xOrig*d.vx)*-1+","+(yOrig*d.vy)*-1+" L "+xOrig*d.vx+","+yOrig*d.vy+"";})
+
+
+function getDegrees(d) {
+    return 0;
+    var radians = Math.atan2(d.vx,d.vy);
+    return (2*Math.PI + radians) * 360 / (2*Math.PI);
+}
+
+
+function getLine(d) {
+    var l1 = Math.abs(d.vx);
+    var l2 = Math.abs(d.vy);
+    if (l1 > l2)
+        return "M "+(xOrig*d.vx)*-1+",0"+" L "+xOrig*d.vx+",0"+"";
+    else
+        return "M "+(yOrig*d.vy)*-1+",0"+" L "+yOrig*d.vy+",0"+"";
+
+}
+
+
+
+
+
+
+
+
+///////////////////////////////
+        if (d.vx > 0)
+            return "M "+(xOrig*d.vx)*-1+",0"+" L "+xOrig*d.vx+",0"+" L "+((xOrig*d.vx)-arrowLen)+","+(arrowWid)+" L "+((xOrig*d.vx)-arrowLen)+","+((arrowWid)*-1)+" L "+xOrig*d.vx+",0";
+        else
+            return "M "+(xOrig*d.vx)*-1+",0"+" L "+xOrig*d.vx+",0"+" L "+((xOrig*d.vx)+arrowLen)+","+(arrowWid)+" L "+((xOrig*d.vx)+arrowLen)+","+((arrowWid)*-1)+" L "+xOrig*d.vx+",0";
+
+
+
+////////////////////////////////
+    if (l1 > l2) {
+        if (d.vx > 0)
+            return "M "+(xOrig*d.vx)*-1+",0"+" L "+xOrig*d.vx+",0"+" L "+((xOrig*d.vx)-arrowLen)+","+(arrowWid)+" L "+((xOrig*d.vx)-arrowLen)+","+((arrowWid)*-1)+" L "+xOrig*d.vx+",0";
+        else
+            return "M "+(xOrig*d.vx)*-1+",0"+" L "+xOrig*d.vx+",0"+" L "+((xOrig*d.vx)+arrowLen)+","+(arrowWid)+" L "+((xOrig*d.vx)+arrowLen)+","+((arrowWid)*-1)+" L "+xOrig*d.vx+",0";
+    } else {
+        if (d.vy > 0)
+            return "M "+(yOrig*d.vy)*-1+",0"+" L "+yOrig*d.vy+",0"+" L "+yOrig*d.vy+",0"+" L "+((yOrig*d.vy)-arrowLen)+","+(arrowWid)+" L "+((yOrig*d.vy)-arrowLen)+","+((arrowWid)*-1)+" L "+yOrig*d.vy+",0";
+        else 
+            return "M "+(yOrig*d.vy)*-1+",0"+" L "+yOrig*d.vy+",0"+" L "+((yOrig*d.vy)+arrowLen)+","+(arrowWid)+" L "+((yOrig*d.vy)+arrowLen)+","+((arrowWid)*-1)+" L "+yOrig*d.vy+",0";
+    }
+
+
+//////////////////////////////////////////////////////////////////////////////
+// PART 2
+
+var hedgehog = d3.select("#plot1-hedgehog")
+        .callReturn(createSvg)
+        .callReturn(createGroups(data));
+
+// WRITE THIS PART
+hedgehog.append("line").attr("width","10px").attr("height","10px")
+.attr("x1",function(d) { return (xOrig*d.vx)*-1; }).attr("y1",function(d) { return (yOrig*d.vy)*-1; })
+.attr("x2",function(d) { return xOrig*d.vx;} ).attr("y2",function(d) { return yOrig*d.vy; })
+.attr("stroke","black").attr("fill","none");
+
+
+//////////////////////////////////////////////////////
+
+
+    if (l1 > l2) {
+        if (d.vx > 0)
+            return "M "+(xOrig*d.vx)*-1+",0"+" L "+xOrig*d.vx+",0"+" L "+((xOrig*d.vx)-arrowLen)+","+(arrowWid)+" L "+((xOrig*d.vx)-arrowLen)+","+((arrowWid)*-1)+" L "+xOrig*d.vx+",0";
+        else
+            return "M "+(xOrig*d.vx)+",0"+" L "+xOrig*d.vx*-1+",0"+" L "+((xOrig*d.vx*-1)-arrowLen)+","+(arrowWid)+" L "+((xOrig*d.vx*-1)-arrowLen)+","+((arrowWid)*-1)+" L "+xOrig*d.vx*-1+",0";
+    } else {
+        if (d.vy > 0)
+            return "M "+(yOrig*d.vy)*-1+",0"+" L "+yOrig*d.vy+",0"+" L "+yOrig*d.vy+",0"+" L "+((yOrig*d.vy)-arrowLen)+","+(arrowWid)+" L "+((yOrig*d.vy)-arrowLen)+","+((arrowWid)*-1)+" L "+yOrig*d.vy+",0";
+        else 
+            return "M "+(yOrig*d.vy)*-1+",0"+" L "+yOrig*d.vy+",0"+" L "+yOrig*d.vy*-1+",0"+" L "+((yOrig*d.vy*-1)-arrowLen)+","+(arrowWid)+" L "+((yOrig*d.vy*-1)-arrowLen)+","+((arrowWid)*-1)+" L "+yOrig*d.vy*-1+",0";
+    }
